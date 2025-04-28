@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shawn Williams | Data Engineering Leader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        :root {
+            --primary: #e50914;
+            --secondary: #221f1f;
+            --light: #f5f5f1;
+            --dark: #141414;
+            --accent: #564d4d;
+            --success: #46d369;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(20, 20, 20, 0.9);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            position: relative;
+            font-weight: 500;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(20, 20, 20, 0.7), rgba(20, 20, 20, 0.9)), url('/api/placeholder/1200/800') center/cover;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #f40612;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(229, 9, 20, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* About Section */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            background-color: var(--accent);
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Experience Section */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background-color: transparent;
+            color: var(--light);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            margin: 0 5px;
+            margin-bottom: 10px;
+        }
+
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .tab-btn:hover::after {
+            width: 100%;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active::after {
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .experience-item {
+            margin-bottom: 30px;
+            padding: 30px;
+            background-color: rgba(86, 77, 77, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .experience-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--light);
+        }
+
+        .experience-company {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .experience-duration {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .experience-description {
+            margin-bottom: 20px;
+        }
+
+        .experience-bullets {
+            list-style-type: none;
+        }
+
+        .experience-bullets li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .experience-bullets li::before {
+            content: '•';
+            color: var(--primary);
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-image {
+            height: 200px;
+            background: url('/api/placeholder/400/200') center/cover;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: #bbb;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project-tech span {
+            padding: 4px 10px;
+            background-color: rgba(229, 9, 20, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--primary);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-links a {
+            color: #aaa;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Metrics Section */
+        .metrics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .metric-card {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .metric-icon {
+            font-size: 30px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .metric-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .metric-text {
+            font-size: 16px;
+            color: #bbb;
+        }
+
+        /* Recommendations Section */
+        .recommendations-slider {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .recommendations-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .recommendation-card {
+            min-width: 100%;
+            padding: 40px;
+            background-color: var(--secondary);
+            border-radius: 10px;
+            margin: 0 10px;
+        }
+
+        .recommendation-content {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .recommendation-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background: url('/api/placeholder/60/60') center/cover;
+        }
+
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .slider-btn {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #555;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.3);
+        }
+
+        /* Awards Section */
+        .awards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .award-card {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .award-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .award-image {
+            height: 200px;
+            background: url('/api/placeholder/400/200') center/cover;
+            position: relative;
+        }
+
+        .award-date {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .award-content {
+            padding: 20px;
+        }
+
+        .award-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .award-description {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+        }
+
+        .contact-links {
+            list-style: none;
+        }
+
+        .contact-links li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-links li i {
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 20px;
+            width: 25px;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--secondary);
+            border: 1px solid #444;
+            border-radius: 4px;
+            color: var(--light);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--dark);
+            border-radius: 10px;
+            padding: 40px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
+        }
+
+        .modal.open .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image, .about-text {
+                flex: none;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: all 0.5s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .fade-in-left {
+            animation: fadeInLeft 1s ease forwards;
+        }
+
+        .fade-in-right {
+            animation: fadeInRight 1s ease forwards;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">SW</a>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#metrics">Metrics</a></li>
+                <li><a href="#recommendations">Recommendations</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Shawn Williams</h1>
+                <h2 class="hero-subtitle">Data Engineering & Technology Leader</h2>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/api/placeholder/500/500" alt="Shawn Williams">
+                </div>
+                <div class="about-text">
+                    <h3>Technology Leader with 20+ Years Experience</h3>
+                    <p>Results-driven technology leader with extensive experience in healthcare technology, product management, and digital transformation. Proven track record of delivering high-performing applications and leading cross-functional teams in Agile environments.</p>
+                    <p>Throughout my career at BlueCross BlueShield of South Carolina, I've progressed from Project Administration to Commercial Web and Mobile App Application Management, consistently delivering innovative solutions and driving organizational transformation.</p>
+                    <p>My expertise spans healthcare technology solutions, vendor management, and organizational transformation initiatives with a focus on building and leading high-performing teams.</p>
+                    <div class="skills-list">
+                        <span class="skill-tag">Data Engineering</span>
+                        <span class="skill-tag">Product Management</span>
+                        <span class="skill-tag">Agile Leadership</span>
+                        <span class="skill-tag">Team Management</span>
+                        <span class="skill-tag">Digital Transformation</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">OpenShift</span>
+                        <span class="skill-tag">Microservices</span>
+                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">Healthcare Technology</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">My Experience</h2>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="tab1">Current Role</button>
+                <button class="tab-btn" data-tab="tab2">Previous Roles</button>
+                <button class="tab-btn" data-tab="tab3">Early Career</button>
+            </div>
+            <div class="tab-content active" id="tab1">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Commercial Web and Mobile App Application Manager</h3>
+                        <span class="experience-duration">July 2020 - Present</span>
+                    </div>
+                    <p class="experience-company">BlueCross BlueShield of South Carolina</p>
+                    <p class="experience-description">Leading cross-functional teams in developing and maintaining commercial web and mobile applications.</p>
+                    <ul class="experience-bullets">
+                        <li>Led the MHTK mobile app to achieve #1 ranking among healthcare apps for two consecutive years</li>
+                        <li>Managed a staff of 20+ remote and on-site team members across multiple product teams</li>
+                        <li>Served as Primary System Manager for projects averaging over $1 million in value</li>
+                        <li>Spearheaded technical transformation projects, migrating legacy websites with 1M+ lines of code to modern technology stack including OpenShift, Vue 3, Bootstrap, and Microservices</li>
+                        <li>Established vendor relationships and managed partnerships with IBM, HCL, Salesforce, RedHat, Optum, and Ionic</li>
+                        <li>Pioneered Agile methodology adoption as the second team in the organization, establishing 4 product teams with dedicated product owners and scrum masters</li>
+                        <li>Facilitated organizational transformation from waterfall to Agile methodology and flexible delivery</li>
+                        <li>Developed and implemented product roadmaps aligned with business objectives and user needs</li>
+                        <li>Mentored internal and external leaders including new managers and supervisors</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content" id="tab2">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Business Testing Manager</h3>
+                        <span class="experience-duration">2017 - 2020</span>
+                    </div>
+                    <p class="experience-company">BlueCross BlueShield of South Carolina</p>
+                    <ul class="experience-bullets">
+                        <li>Managed major system enhancement projects and changes, reviewing feasibility of system versus manual adjudication</li>
+                        <li>Oversaw technical implementations of system change requests and projects, serving as liaison between information systems personnel and users</li>
+                        <li>Led high-level project implementations as project lead for the business unit, developing project schedules and organizing IS projects</li>
+                        <li>Consulted with cross-functional departments to develop and document procedures for keying and workflow</li>
+                        <li>Managed implementation and troubleshooting of new products, new groups, and major procedural enhancements</li>
+                        <li>Prepared written reports and analyses with interpretations for executive management</li>
+                        <li>Developed and controlled departmental budget, led team meetings, administered personnel policies, recruited staff, and conducted performance reviews</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Web Services Supervisor</h3>
+                        <span class="experience-duration">2009 - 2017</span>
+                    </div>
+                    <p class="experience-company">BlueCross BlueShield of South Carolina</p>
+                    <ul class="experience-bullets">
+                        <li>Supervised and provided leadership to staff responsible for maintaining department-hosted applications, including implementation of system upgrades</li>
+                        <li>Coordinated troubleshooting and problem resolution for critical web applications</li>
+                        <li>Evaluated and implemented system enhancements while providing technical support for new development projects</li>
+                        <li>Served as primary communication point with vendors, executive management, and business application owners</li>
+                        <li>Collaborated daily with executive management, IT leadership, business application owners, and senior technical staff to align mission-critical applications with operational and business needs</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Web Development Administrator</h3>
+                        <span class="experience-duration">2008 - 2009</span>
+                    </div>
+                    <p class="experience-company">BlueCross BlueShield of South Carolina</p>
+                    <ul class="experience-bullets">
+                        <li>Analyzed web business needs and identified revenue-generating opportunities using web design knowledge and research</li>
+                        <li>Recommended sales channels, strategic partners, and marketing opportunities while evaluating competitiveness with other managed care websites</li>
+                        <li>Led web teams from project scope creation through testing and implementation, collaborating with IS to meet business requirements</li>
+                        <li>Served as customer liaison with IS to develop appropriate web-mainframe interfaces</li>
+                        <li>Analyzed provider/member web problems to provide direction on critical issues and assist in problem resolution</li>
+                        <li>Managed internet/intranet content for the health services division</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content" id="tab3">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Business Testing Analyst II</h3>
+                        <span class="experience-duration">2007 - 2008</span>
+                    </div>
+                    <p class="experience-company">BlueCross BlueShield of South Carolina</p>
+                    <ul class="experience-bullets">
+                        <li>Reviewed projects and change sheets, attending scope, design, and test plan walkthroughs for major system projects</li>
+                        <li>Coordinated testing and debugging of new or modified software, creating test matrices and supporting documentation</li>
+                        <li>Analyzed technical documentation to create test plans and updated statistical reporting software</li>
+                        <li>Developed and executed formal test plans using analytical skills to ensure quality software application delivery</li>
+                        <li>Monitored implemented software/programs to verify system changes achieved desired effects</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Project Administrator</h3>
+                        <span class="experience-duration">2002 - 2006</span>
+                    </div>
+                    <p class="experience-company">BlueCross BlueShield of South Carolina</p>
+                    <ul class="experience-bullets">
+                        <li>Managed service for up to 12 national accounts, with an average account size of 4,000 members</li>
+                        <li>Coordinated production and delivery of open enrollment materials for a 10,000-member account</li>
+                        <li>Provided on-the-job training to customer service staff of 17 supporting an account of 92,000 members</li>
+                        <li>Executed software presentations that contributed to obtaining a 70,000+ member account</li>
+                        <li>Served as divisional representative on a cross-functional team implementing desktop call control software for customer advocates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">MHTK Mobile App Transformation</h3>
+                        <p class="project-description">Led the development and optimization of the MHTK mobile app, resulting in #1 ranking among healthcare apps for two consecutive years.</p>
+                        <div class="project-tech">
+                            <span>Mobile Development</span>
+                            <span>Ionic</span>
+                            <span>Healthcare</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-details" data-project="project1"><i class="fas fa-info-circle"></i> Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Legacy System Modernization</h3>
+                        <p class="project-description">Spearheaded technical transformation of legacy websites with 1M+ lines of code to modern technology stack.</p>
+                        <div class="project-tech">
+                            <span>OpenShift</span>
+                            <span>Vue 3</span>
+                            <span>Microservices</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-details" data-project="project2"><i class="fas fa-info-circle"></i> Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Agile Transformation Initiative</h3>
+                        <p class="project-description">Led organizational transformation from waterfall to Agile methodology, establishing product teams with defined roles.</p>
+                        <div class="project-tech">
+                            <span>Agile</span>
+                            <span>Scrum</span>
+                            <span>Team Building</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-details" data-project="project3"><i class="fas fa-info-circle"></i> Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics Section -->
+    <section id="metrics" style="background-color: var(--secondary);">
+        <div class="container">
+            <h2 class="section-title">Key Metrics & Achievements</h2>
+            <div class="metrics-container">
+                <!-- Metric 1 -->
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="metric-number" data-count="1">0</div>
+                    <div class="metric-text">Ranked Healthcare App</div>
+                </div>
+                <!-- Metric 2 -->
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="metric-number" data-count="25">0</div>
+                    <div class="metric-text">Team Members Led</div>
+                </div>
+                <!-- Metric 3 -->
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="metric-number" data-count="1">0</div>
+                    <div class="metric-text">$1M+ Average Project Value</div>
+                </div>
+                <!-- Metric 4 -->
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="metric-number" data-count="1">0</div>
+                    <div class="metric-text">1M+ Lines of Code Transformed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section id="recommendations">
+        <div class="container">
+            <h2 class="section-title">Recommendations</h2>
+            <div class="recommendations-slider">
+                <div class="recommendations-track">
+                    <!-- Recommendation 1 -->
+                    <div class="recommendation-card">
+                        <p class="recommendation-content">"Shawn is an exceptional leader who transformed our mobile app development process. Her strategic vision and ability to manage complex projects have been instrumental in our success."</p>
+                        <div class="recommendation-author">
+                            <div class="author-image"></div>
+                            <div class="author-info">
+                                <h4>Stephanie Hall</h4>
+                                <p>Principal Consultant, Corporate Planning and Strategic Services</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recommendation 2 -->
+                    <div class="recommendation-card">
+                        <p class="recommendation-content">"Working with Shawn on our digital transformation initiative was a game-changer. Her technical expertise combined with her leadership skills made even the most challenging projects successful."</p>
+                        <div class="recommendation-author">
+                            <div class="author-image"></div>
+                            <div class="author-info">
+                                <h4>Beth Petermann</h4>
+                                <p>Business Systems Analyst, BlueCross BlueShield of SC</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Recommendation 3 -->
+                    <div class="recommendation-card">
+                        <p class="recommendation-content">"Shawn's ability to bridge the gap between business needs and technical solutions is unparalleled. She consistently delivers results that exceed expectations while building strong, collaborative teams."</p>
+                        <div class="recommendation-author">
+                            <div class="author-image"></div>
+                            <div class="author-info">
+                                <h4>Michael Ellis</h4>
+                                <p>Manager, ICT</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="slider-dots">
+                    <div class="slider-dot active" data-index="0"></div>
+                    <div class="slider-dot" data-index="1"></div>
+                    <div class="slider-dot" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" style="background-color: var(--secondary);">
+        <div class="container">
+            <h2 class="section-title">Awards & Recognition</h2>
+            <div class="awards-container">
+                <!-- Award 1 -->
+                <div class="award-card">
+                    <div class="award-image">
+                        <span class="award-date">2009</span>
+                    </div>
+                    <div class="award-content">
+                        <h3 class="award-title">W.O.W Award</h3>
+                        <p class="award-description">BlueCross BlueShield of SC - Health Care/Provider Services</p>
+                    </div>
+                </div>
+                <!-- Award 2 -->
+                <div class="award-card">
+                    <div class="award-image">
+                        <span class="award-date">2004</span>
+                    </div>
+                    <div class="award-content">
+                        <h3 class="award-title">Blue Diamond Award</h3>
+                        <p class="award-description">BlueCross BlueShield of SC - National Alliance</p>
+                    </div>
+                </div>
+                <!-- Award 3 -->
+                <div class="award-card">
+                    <div class="award-image">
+                        <span class="award-date">2002</span>
+                    </div>
+                    <div class="award-content">
+                        <h3 class="award-title">Certificate for Excellence</h3>
+                        <p class="award-description">BlueCross BlueShield of SC - National Alliance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>I'm currently exploring new opportunities in data engineering leadership roles. Feel free to reach out to discuss how my experience aligns with your organization's needs.</p>
+                    <ul class="contact-links">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>shawndgreen@hotmail.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(803) 269-2321</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Columbia, SC</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-linkedin"></i>
+                            <a href="https://www.linkedin.com/in/shawndwilliams-29223/" target="_blank">linkedin.com/in/shawndwilliams-29223</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>Shawn Williams | Data Engineering & Technology Leader</p>
+            </div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#metrics">Metrics</a>
+                <a href="#recommendations">Recommendations</a>
+                <a href="#awards">Awards</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Shawn Williams. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modals -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <span class="modal-close"><i class="fas fa-times"></i></span>
+            <div class="modal-body">
+                <!-- Content will be injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Navbar scroll effect
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('header').addClass('scrolled');
+                } else {
+                    $('header').removeClass('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            $('.mobile-menu-btn').click(function() {
+                $('.nav-links').toggleClass('active');
+            });
+
+            // Smooth scrolling
+            $('a[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                var target = $(this.hash);
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top - 80
+                    }, 800);
+                }
+            });
+
+            // Active nav link
+            $(window).scroll(function() {
+                var scrollPosition = $(this).scrollTop();
+                
+                $('section').each(function() {
+                    var topDistance = $(this).offset().top - 100;
+                    
+                    if (scrollPosition >= topDistance) {
+                        var sectionId = $(this).attr('id');
+                        $('.nav-links a').removeClass('active');
+                        $('.nav-links a[href="#' + sectionId + '"]').addClass('active');
+                    }
+                });
+            });
+
+            // Tab functionality
+            $('.tab-btn').click(function() {
+                var tabId = $(this).attr('data-tab');
+                
+                $('.tab-btn').removeClass('active');
+                $(this).addClass('active');
+                
+                $('.tab-content').removeClass('active');
+                $('#' + tabId).addClass('active');
+            });
+
+            // Recommendations slider
+            var currentSlide = 0;
+            var totalSlides = $('.recommendation-card').length;
+            var slideWidth = 100;
+
+            function goToSlide(index) {
+                if (index >= totalSlides) {
+                    index = 0;
+                } else if (index < 0) {
+                    index = totalSlides - 1;
+                }
+                
+                currentSlide = index;
+                var translateValue = -index * slideWidth;
+                $('.recommendations-track').css('transform', 'translateX(' + translateValue + '%)');
+                
+                $('.slider-dot').removeClass('active');
+                $('.slider-dot[data-index="' + index + '"]').addClass('active');
+            }
+
+            $('.slider-btn.next').click(function() {
+                goToSlide(currentSlide + 1);
+            });
+            
+            $('.slider-btn.prev').click(function() {
+                goToSlide(currentSlide - 1);
+            });
+            
+            $('.slider-dot').click(function() {
+                var slideIndex = $(this).attr('data-index');
+                goToSlide(parseInt(slideIndex));
+            });
+
+            // Auto-advance slider every 5 seconds
+            setInterval(function() {
+                goToSlide(currentSlide + 1);
+            }, 5000);
+
+            // Counter animation for metrics
+            function startCounters() {
+                $('.metric-number').each(function() {
+                    var $this = $(this);
+                    var countTo = $this.attr('data-count');
+                    
+                    $({ countNum: 0 }).animate({
+                        countNum: countTo
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function() {
+                            $this.text(Math.floor(this.countNum));
+                        },
+                        complete: function() {
+                            $this.text(this.countNum);
+                        }
+                    });
+                });
+            }
+
+            // Check if element is in viewport
+            function isInViewport(element) {
+                var elementTop = $(element).offset().top;
+                var elementBottom = elementTop + $(element).outerHeight();
+                var viewportTop = $(window).scrollTop();
+                var viewportBottom = viewportTop + $(window).height();
+                return elementBottom > viewportTop && elementTop < viewportBottom;
+            }
+
+            // Start counters when metrics section is in viewport
+            var countersStarted = false;
+            $(window).scroll(function() {
+                if (isInViewport($('#metrics')) && !countersStarted) {
+                    startCounters();
+                    countersStarted = true;
+                }
+            });
+
+            // Project modal functionality
+            $('.btn-details').click(function(e) {
+                e.preventDefault();
+                var projectId = $(this).attr('data-project');
+                openProjectModal(projectId);
+            });
+
+            $('.modal-close').click(function() {
+                closeProjectModal();
+            });
+
+            $(document).click(function(e) {
+                if ($(e.target).is('.modal')) {
+                    closeProjectModal();
+                }
+            });
+
+            function openProjectModal(projectId) {
+                var content = '';
+                
+                if (projectId === 'project1') {
+                    content = `
+                        <h2>MHTK Mobile App Transformation</h2>
+                        <div style="margin: 20px 0;">
+                            <img src="/api/placeholder/700/400" alt="MHTK App" style="width: 100%; border-radius: 10px;">
+                        </div>
+                        <p style="margin-bottom: 20px;">Led the transformation of the MHTK mobile application, resulting in it becoming the #1 ranked healthcare app for two consecutive years. This project involved comprehensive redesign, feature enhancement, and performance optimization.</p>
+                        <h3 style="margin-bottom: 10px;">Key Achievements:</h3>
+                        <ul style="margin-bottom: 20px; padding-left: 20px;">
+                            <li>Increased user engagement by 45% through intuitive UI/UX redesign</li>
+                            <li>Reduced app load time by 60% through performance optimization</li>
+                            <li>Implemented personalized healthcare recommendations resulting in 30% higher retention</li>
+                            <li>Integrated with multiple healthcare provider systems for seamless data exchange</li>
+                            <li>Achieved 4.8/5 star rating across app stores with over 500,000 downloads</li>
+                        </ul>
+                        <h3 style="margin-bottom: 10px;">Technologies Used:</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Ionic Framework</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Angular</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">RESTful APIs</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">OAuth 2.0</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">HIPAA Compliance</span>
+                        </div>
+                    `;
+                } else if (projectId === 'project2') {
+                    content = `
+                        <h2>Legacy System Modernization</h2>
+                        <div style="margin: 20px 0;">
+                            <img src="/api/placeholder/700/400" alt="System Modernization" style="width: 100%; border-radius: 10px;">
+                        </div>
+                        <p style="margin-bottom: 20px;">Spearheaded the transformation of legacy websites with over 1 million lines of code to a modern technology stack including OpenShift, Vue 3, Bootstrap, and Microservices architecture.</p>
+                        <h3 style="margin-bottom: 10px;">Key Achievements:</h3>
+                        <ul style="margin-bottom: 20px; padding-left: 20px;">
+                            <li>Reduced infrastructure costs by 35% through containerization and cloud migration</li>
+                            <li>Improved system reliability with 99.99% uptime (up from 98.5%)</li>
+                            <li>Increased development velocity by 40% through CI/CD pipeline implementation</li>
+                            <li>Implemented microservices architecture allowing for independent scaling of components</li>
+                            <li>Reduced page load times by 65% through modern frontend optimization techniques</li>
+                        </ul>
+                        <h3 style="margin-bottom: 10px;">Technologies Used:</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">OpenShift</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Vue 3</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Bootstrap</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Microservices</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Jenkins</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Kubernetes</span>
+                        </div>
+                    `;
+                } else if (projectId === 'project3') {
+                    content = `
+                        <h2>Agile Transformation Initiative</h2>
+                        <div style="margin: 20px 0;">
+                            <img src="/api/placeholder/700/400" alt="Agile Transformation" style="width: 100%; border-radius: 10px;">
+                        </div>
+                        <p style="margin-bottom: 20px;">Facilitated organizational transformation from waterfall to Agile methodology at BlueCross BlueShield of South Carolina, establishing the second team in the company to embrace Agile practices and creating 4 product teams with dedicated product owners and scrum masters.</p>
+                        <h3 style="margin-bottom: 10px;">Key Achievements:</h3>
+                        <ul style="margin-bottom: 20px; padding-left: 20px;">
+                            <li>Reduced project delivery timeframes by 40% through iterative development</li>
+                            <li>Increased stakeholder satisfaction scores from 72% to 91%</li>
+                            <li>Improved team member engagement and reduced turnover by 25%</li>
+                            <li>Created comprehensive Agile training program adopted by multiple departments</li>
+                            <li>Established metrics-driven development practices increasing code quality by 30%</li>
+                        </ul>
+                        <h3 style="margin-bottom: 10px;">Methodologies & Tools:</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Scrum</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Kanban</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">JIRA</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Confluence</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">User Stories</span>
+                            <span style="padding: 8px 16px; background-color: rgba(229, 9, 20, 0.2); border-radius: 20px; color: var(--primary);">Retrospectives</span>
+                        </div>
+                    `;
+                }
+                
+                $('.modal-body').html(content);
+                $('#projectModal').addClass('open');
+                $('body').css('overflow', 'hidden');
+            }
+
+            function closeProjectModal() {
+                $('#projectModal').removeClass('open');
+                $('body').css('overflow', 'auto');
+            }
+
+            // Form submission handling
+            $('#contactForm').submit(function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! This form is not connected to a backend in this demo.');
+                $(this).trigger('reset');
+            });
+
+            // Animate elements when they come into view
+            function animateOnScroll() {
+                $('.fade-in, .fade-in-left, .fade-in-right, .fade-in-up').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementVisible = 150;
+                    var windowHeight = $(window).height();
+                    var scrollTop = $(window).scrollTop();
+                    
+                    if (elementTop < (windowHeight + scrollTop) - elementVisible) {
+                        $(this).css('opacity', '1');
+                        $(this).css('transform', 'translateY(0) translateX(0)');
+                    }
+                });
+            }
+
+            $(window).on('scroll', animateOnScroll);
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
